@@ -5,7 +5,7 @@ export const myTheme: Theme = {
   styles: {
     global: (props) => ({
       'body, html': {
-        background: props.colorMode === 'dark' ? 'gray.900' : 'white',
+        background: props.colorMode === 'dark' ? 'gray.900' : 'cyan.100',
         color: props.colorMode === 'dark' ? 'white' : 'gray.900'
       }
     })
@@ -23,17 +23,22 @@ export const myTheme: Theme = {
   },
   fontSizes: {
     ...theme.fontSizes,
-    '2xl': '54px'
+    '8xl': '54px'
   },
   colors: {
     ...theme.colors,
     gray: {
       ...theme.colors.gray,
-      '50': '#F4FBFB'
+      '50': '#F4FBFB',
+      '900': '#282828'
     },
     blue: {
       ...theme.colors.blue,
       '700': '#5C5E7D'
     }
+  },
+  sizes: {
+    ...theme.sizes,
+    '60': '60px'
   }
 }
