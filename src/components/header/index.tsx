@@ -1,8 +1,7 @@
-import { Center, Flex, Spacer, keyframes, Tooltip, Container } from '@chakra-ui/react'
+import { Center, Flex, keyframes, Tooltip, Container } from '@chakra-ui/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { SearchBar } from '../searchbar'
 import { SwitchTheme } from '../switch-theme'
 import { NavLink } from './nav-link'
 
@@ -35,7 +34,6 @@ export const Header = () => {
             </Container>
           </Tooltip>
         </Link>
-        <SearchBar />
         <Center as="nav" gap="3">
           <NavLink link="/about" title="About" />
           <SwitchTheme />

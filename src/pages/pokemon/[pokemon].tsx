@@ -53,7 +53,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = await PokeService.getAll()
   const paths = data.results.map((pokemon: any) => {
     return {
-      params: { pokemonName: pokemon.name }
+      params: { pokemon: pokemon.name }
     }
   })
   return { paths, fallback: false }
@@ -61,7 +61,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { params } = ctx
-  const name = params.pokemonName
+  const name = params.pokemon
   const data = await PokeService.getByName(name as string)
   return {
     props: {
