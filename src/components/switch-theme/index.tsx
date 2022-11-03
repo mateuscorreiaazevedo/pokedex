@@ -17,7 +17,7 @@ export const SwitchTheme: React.FC<Props> = ({ type }) => {
   return (
     <Switch
       marginX={4}
-      colorScheme="teal"
+      colorScheme="blue.700"
       aria-describedby="Switch theme"
       onChange={toggleColorMode}
       isChecked={!light}

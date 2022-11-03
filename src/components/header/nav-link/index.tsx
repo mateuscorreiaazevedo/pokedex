@@ -1,4 +1,4 @@
-import { Box, Link as A, useColorMode } from '@chakra-ui/react'
+import { Image, Link as ChakraLink, useColorMode } from '@chakra-ui/react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -9,29 +9,30 @@ type Props = {
 
 export const NavLink: React.FC<Props> = ({ link, title }) => {
   const { colorMode } = useColorMode()
-
   const bgLine = colorMode === 'light' ? 'gray.900' : 'white'
 
   return (
     <Link href={link}>
-      <A
+      <ChakraLink
         as="span"
         fontSize="xl"
         fontWeight="medium"
-        position="relative"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
         css={`
           &:hover {
             text-decoration: none;
-            .line {
-              transition: width 200ms linear;
-              width: 100%;
+            img {
+              transition: 400ms;
+              transform: scale(1);
             }
           }
         `}
       >
+        <Image mr="2" src="./assets/pokeball.png" w="6" transform="scale(0)" />
         {title}
-        <Box className="line" w="0" h="1" bg={bgLine} borderRadius="full" position="absolute" right="0" />
-      </A>
+      </ChakraLink>
     </Link>
   )
 }

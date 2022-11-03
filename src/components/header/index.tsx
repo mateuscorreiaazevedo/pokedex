@@ -1,20 +1,14 @@
 import { Center, Flex, Image, Spacer, keyframes } from '@chakra-ui/react'
-import { transparentize } from 'polished'
 import Link from 'next/link'
 import React from 'react'
+import { SwitchTheme } from '../switch-theme'
 import { NavLink } from './nav-link'
 
 export const Header = () => {
   const animation = keyframes`
-    5%, 25% {
-      transform: rotate(30deg);
-    }
-    10%, 20%, 28% {
-      transform: rotate(0);
-    }
-    18% {
-      transform: rotate(-30deg);
-    }
+    5%, 25% {transform: rotate(30deg)}
+    10%, 20%, 28% {transform: rotate(0)}
+    18% {transform: rotate(-30deg)}
   `
 
   return (
@@ -22,7 +16,6 @@ export const Header = () => {
       <Flex
         backdropFilter="auto"
         backdropBlur="md"
-        as="nav"
         w="full"
         py="2"
         px="4"
@@ -30,7 +23,7 @@ export const Header = () => {
         bgColor="whiteAlpha.500"
         boxShadow="xl"
         h="full"
-        borderRadius="xl"
+        borderRadius="2xl"
       >
         <Link href="/">
           <Image
@@ -42,9 +35,9 @@ export const Header = () => {
           />
         </Link>
         <Spacer />
-        <Center gap="3">
-          <NavLink link="/" title="Contact" />
-          <NavLink link="/" title="About" />
+        <Center as="nav" gap="3">
+          <NavLink link="/about" title="About" />
+          <SwitchTheme />
         </Center>
       </Flex>
     </Center>
