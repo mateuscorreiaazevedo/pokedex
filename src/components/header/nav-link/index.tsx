@@ -1,4 +1,5 @@
-import { Image, Link as ChakraLink, useColorMode } from '@chakra-ui/react'
+import { Link as ChakraLink, useColorMode, Container } from '@chakra-ui/react'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
@@ -23,14 +24,24 @@ export const NavLink: React.FC<Props> = ({ link, title }) => {
         css={`
           &:hover {
             text-decoration: none;
-            img {
+            div.container-img {
               transition: 400ms;
               transform: scale(1);
             }
           }
         `}
       >
-        <Image mr="2" src="./assets/pokeball.png" w="6" transform="scale(0)" />
+        <Container
+          sx={{
+            '@media (max-width: 425px)': {
+              display: 'none'
+            }
+          }}
+          className="container-img"
+          transform="scale(0)"
+        >
+          <Image src="/assets/pokeball.png" alt="pokeball" width={24} height={24} />
+        </Container>
         {title}
       </ChakraLink>
     </Link>
