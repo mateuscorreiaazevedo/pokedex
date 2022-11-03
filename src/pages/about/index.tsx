@@ -14,7 +14,7 @@ const About = () => {
         <Flex as="article" justifyContent="center" wrap="wrap">
           <Box as="span" fontSize="lg" textAlign="justify" w="2xl">
             Pokédex feita a partir da api <Link href="https://pokeapi.co/">PokéAPI</Link> utilizando NextJs e Chakra ui
-            para a estilização, com cerca de 600 pokémons e suas páginas individuais! Espero que gostem!! "Vai Pikachu!"
+            para a estilização, com cerca de 600 pokémons e suas páginas individuais! Espero que gostem! "Vai Pikachu!"
           </Box>
           <Image
             src="./assets/pokeball.png"
