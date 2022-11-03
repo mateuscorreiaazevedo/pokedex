@@ -5,34 +5,7 @@ import { TitleHead } from '../components/head'
 import { GetStaticProps } from 'next'
 import React from 'react'
 
-const Home = ({ data }) => {
-  const [pokemons, setPokemons] = React.useState([])
-  const [loading, setLoading] = React.useState(false)
-
-  React.useEffect(() => {
-    ;(async () => {
-      try {
-        setLoading(true)
-        setPokemons(data.results)
-      } catch (error: any) {
-        console.error(error.message)
-      } finally {
-        setLoading(false)
-      }
-    })()
-  }, [data, loading])
-
-  if (loading) {
-    return (
-      <>
-        <TitleHead title="Loading | Pokedex" />
-        <Center>
-          <Spinner size="xl" color="red.500" />
-        </Center>
-      </>
-    )
-  }
-
+const Home = ({ pokemons }) => {
   return (
     <>
       <TitleHead title="Home | Pokedex" />
@@ -66,13 +39,13 @@ const Home = ({ data }) => {
 export default Home
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await PokeService.getAll(1000)
+  const data = await PokeService.getAll()
 
   data.results.forEach((item: any, index: number) => {
     item.id = index + 1
   })
 
   return {
-    props: { data }
+    props: { pokemons: data.results }
   }
 }

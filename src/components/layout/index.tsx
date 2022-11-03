@@ -7,7 +7,7 @@ export const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      <Container as="main" minH="93vh" maxW="1200px" w="full" pt="20">
+      <Container as="main" minH="90vh" maxW="1200px" w="full" pt="20">
         {children}
       </Container>
       <Footer />

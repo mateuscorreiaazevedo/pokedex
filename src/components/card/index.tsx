@@ -1,13 +1,14 @@
-import { Box, Center, Heading, Image, Stack, useColorMode } from '@chakra-ui/react'
+import { Center, Heading, Image, Stack, useColorMode } from '@chakra-ui/react'
 import Link from 'next/link'
 import React from 'react'
+import { IdCard } from '../id-card'
 
 export const CardPokemon = (props: any) => {
   const { name, id } = props
   const { colorMode } = useColorMode()
   const bgColorPoke = colorMode === 'light' ? 'teal.100' : 'gray.800'
   return (
-    <Link href={`/${name || id}`}>
+    <Link href={`/pokemon/${name}`}>
       <Stack
         cursor="pointer"
         bg={bgColorPoke}
@@ -16,29 +17,16 @@ export const CardPokemon = (props: any) => {
         p="3"
         position="relative"
         borderRadius="xl"
-        boxShadow="2xl"
+        boxShadow="dark-lg"
         transition="all 300ms linear"
         zIndex="base"
         _hover={{
-          boxShadow: 'dark-lg',
+          boxShadow: '2xl',
           transform: 'scale(1.1)'
         }}
       >
-        <Box
-          shadow="md"
-          position="absolute"
-          bg="red.500"
-          left="0"
-          top="5"
-          minW="8"
-          w="auto"
-          borderRightRadius="base"
-          color="white"
-          fontWeight="bold"
-          textAlign="center"
-        >
-          {id}
-        </Box>
+        <IdCard id={id} rest={{ minW: 8 }} />
+
         <Center>
           <Image w="36" h="36" src={`https://cdn.traction.one/pokedex/pokemon/${id}.png`} alt={name} />
         </Center>

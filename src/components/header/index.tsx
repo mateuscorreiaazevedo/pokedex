@@ -1,4 +1,5 @@
-import { Center, Flex, Image, Spacer, keyframes, Tooltip } from '@chakra-ui/react'
+import { Center, Flex, Spacer, keyframes, Tooltip, Container } from '@chakra-ui/react'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { SearchBar } from '../searchbar'
@@ -29,13 +30,9 @@ export const Header = () => {
       >
         <Link href="/">
           <Tooltip label="To home" bg="blue.700" color="white" borderRadius="md" hasArrow>
-            <Image
-              src="./assets/pokeball.png"
-              h="full"
-              _hover={{
-                animation: `${animationPokeball} 1s ease-out infinite`
-              }}
-            />
+            <Container _hover={{ animation: `${animationPokeball} 1s ease-out infinite` }}>
+              <Image src="/assets/pokeball.png" width={46} height={46} alt="pokeball" />
+            </Container>
           </Tooltip>
         </Link>
         <SearchBar />
