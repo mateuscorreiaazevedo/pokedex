@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Image, Stack } from '@chakra-ui/react'
+import { Box, Flex, Heading, Image, Link, Stack } from '@chakra-ui/react'
 import { animationPokeball } from '../../components/header'
 import { TitleHead } from '../../components/head'
 import React from 'react'
@@ -13,9 +13,8 @@ const About = () => {
         </Heading>
         <Flex as="article" justifyContent="center" wrap="wrap">
           <Box as="span" fontSize="lg" textAlign="justify" w="2xl">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique deleniti voluptatem adipisci commodi
-            minima dolorem numquam ea sequi et, exercitationem aliquid assumenda dolore odit atque reprehenderit nobis
-            porro, error cumque earum quas. Exercitationem qui officia amet cum vel, at adipisci?
+            Pokédex feita a partir da api <Link href="https://pokeapi.co/">PokéAPI</Link> utilizando NextJs e Chakra ui
+            para a estilização, com cerca de 600 pokémons e suas páginas individuais! Espero que gostem! "Vai Pikachu!"
           </Box>
           <Image
             src="./assets/pokeball.png"
