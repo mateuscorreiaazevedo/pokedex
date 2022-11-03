@@ -5,7 +5,7 @@ import React from 'react'
 const Home = () => {
   return (
     <>
-      <TitleHead title="Pokedex | Next App" />
+      <TitleHead title="Home | Pokedex" />
       <Image w="container.sm" src="/assets/pokeball.png" />
     </>
   )

@@ -4,13 +4,12 @@ import React from 'react'
 import { SwitchTheme } from '../switch-theme'
 import { NavLink } from './nav-link'
 
+export const animationPokeball = keyframes`
+  5%, 25% {transform: rotate(30deg)}
+  10%, 20%, 28% {transform: rotate(0)}
+  18% {transform: rotate(-30deg)}
+`
 export const Header = () => {
-  const animation = keyframes`
-    5%, 25% {transform: rotate(30deg)}
-    10%, 20%, 28% {transform: rotate(0)}
-    18% {transform: rotate(-30deg)}
-  `
-
   return (
     <Center as="header" h="60" marginTop="3" position="fixed" w="full">
       <Flex
@@ -30,7 +29,7 @@ export const Header = () => {
             src="./assets/pokeball.png"
             h="full"
             _hover={{
-              animation: `${animation} 1s ease-out infinite`
+              animation: `${animationPokeball} 1s ease-out infinite`
             }}
           />
         </Link>
