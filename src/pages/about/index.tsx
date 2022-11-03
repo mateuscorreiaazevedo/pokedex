@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Image, Stack, Wrap } from '@chakra-ui/react'
+import { Box, Flex, Heading, Image, Stack } from '@chakra-ui/react'
 import { animationPokeball } from '../../components/header'
 import { TitleHead } from '../../components/head'
 import React from 'react'
