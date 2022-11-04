@@ -1,5 +1,6 @@
-import { Box, Flex, Heading, Image, useColorMode } from '@chakra-ui/react'
-import { GetStaticPaths, GetStaticProps } from 'next'
+import { Box, Center, Flex, Heading, useColorMode } from '@chakra-ui/react'
+import Image from 'next/image'
+import { GetServerSideProps } from 'next'
 import React from 'react'
 import { Abilities } from '../../components/abilities'
 import { TitleHead } from '../../components/head'
@@ -25,7 +26,14 @@ const Pokemon = ({ pokemon }) => {
         wrap="wrap"
       >
         <IdCard id={pokemon.id} rest={{ minW: 10, fontSize: '2xl' }} />
-        <Image src={`https://cdn.traction.one/pokedex/pokemon/${pokemon.id}.png`} w="xl" minW="40" />
+        <Center w="xl" minW="40%">
+          <Image
+            src={`https://cdn.traction.one/pokedex/pokemon/${pokemon.id}.png`}
+            width="1000"
+            height="1000"
+            alt={pokemon.name}
+          />
+        </Center>
         <Box>
           <Heading
             sx={{
@@ -49,23 +57,20 @@ const Pokemon = ({ pokemon }) => {
 
 export default Pokemon
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await PokeService.getAll()
-  const paths = data.results.map((pokemon: any) => {
-    return {
-      params: { pokemon: pokemon.name }
-    }
-  })
-  return { paths, fallback: false }
-}
-
-export const getStaticProps: GetStaticProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { params } = ctx
   const name = params.pokemon
-  const data = await PokeService.getByName(name as string)
-  return {
-    props: {
-      pokemon: data
+
+  try {
+    const data = await PokeService.getByName(name as string)
+
+    return {
+      props: {
+        pokemon: data
+      }
     }
+  } catch (error) {
+    console.error((error as any).message)
+  } finally {
   }
 }
