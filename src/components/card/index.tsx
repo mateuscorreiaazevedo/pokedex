@@ -1,4 +1,5 @@
-import { Center, Heading, Image, Stack, useColorMode } from '@chakra-ui/react'
+import { Center, Heading, Stack, useColorMode } from '@chakra-ui/react'
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { IdCard } from '../id-card'
@@ -28,7 +29,7 @@ export const CardPokemon = (props: any) => {
         <IdCard id={id} rest={{ minW: 8 }} />
 
         <Center>
-          <Image w="36" h="36" src={`https://cdn.traction.one/pokedex/pokemon/${id}.png`} alt={name} />
+          <Image width="144" height="144" src={`https://cdn.traction.one/pokedex/pokemon/${id}.png`} alt={name} />
         </Center>
         <Heading mb="2" textTransform="capitalize" fontSize="2xl" color="red.500" w="full" textAlign="center">
           {name}
