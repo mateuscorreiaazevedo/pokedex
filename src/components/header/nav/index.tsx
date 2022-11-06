@@ -36,7 +36,6 @@ export const Nav = () => {
         </Button>
       </Center>
       <Drawer isOpen={isOpen} placement="right" onClose={onClose} finalFocusRef={mobileRef}>
-        <DrawerOverlay />
         <DrawerMenu />
       </Drawer>
     </>
