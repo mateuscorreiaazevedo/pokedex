@@ -1,4 +1,5 @@
-import { Box, Center, Flex, Heading, useColorMode } from '@chakra-ui/react'
+import { Box, Center, Flex, Heading, useColorModeValue } from '@chakra-ui/react'
+import { LoadingFallback } from '../../components/loading-fallback'
 import { Abilities } from '../../components/abilities'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { PokeService } from '../../services/pokemon'
@@ -8,11 +9,9 @@ import { Types } from '../../components/type'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import React from 'react'
-import { LoadingFallback } from '../../components/loading-fallback'
 
 const Pokemon = ({ pokemon }) => {
-  const { colorMode } = useColorMode()
-  const bgColorPoke = colorMode === 'light' ? 'teal.100' : 'gray.800'
+  const bgColorPoke = useColorModeValue('teal.100', 'gray.800')
   const router = useRouter()
 
   if (router.isFallback) {
@@ -79,9 +78,8 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     const data = await PokeService.getByName(name as string)
 
     return {
-      props: {
-        pokemon: data
-      }
+      props: { pokemon: data },
+      revalidate: 60
     }
   } catch (error) {
     console.error((error as any).message)

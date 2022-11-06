@@ -1,26 +1,19 @@
-import {
-  Button,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  useColorModeValue,
-  useToast
-} from '@chakra-ui/react'
+import { Input, InputGroup, InputLeftElement, useColorModeValue, useToast } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { BsSearch } from 'react-icons/bs'
 
 export const SearchBar = () => {
-  const [search, setSearch] = React.useState('')
-  const router = useRouter()
   const colorPlaceholder = useColorModeValue('gray.500', 'white')
+  const [search, setSearch] = React.useState('')
+  const pokeName = search.toLowerCase()
+  const router = useRouter()
   const toast = useToast()
 
-  const handlePokemon = (e?: React.KeyboardEvent<HTMLInputElement>) => {
+  const handlePokemon = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const enter = e.key === 'Enter'
     if (enter && search.length) {
-      router.push(`/pokemon/${search}`)
+      router.push(`/pokemon/${pokeName}`)
       setSearch('')
     } else if (enter && !search.length) {
       toast({
