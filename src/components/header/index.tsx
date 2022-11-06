@@ -29,11 +29,7 @@ export const Header = () => {
       >
         <Link href="/">
           <Tooltip label="To home" bg="blue.700" color="white" borderRadius="md" hasArrow>
-            <Container
-              w={{ md: '100%', base: 20 }}
-              h={{ md: '100%', base: 20 }}
-              _hover={{ animation: `${animationPokeball} 1s ease-out infinite` }}
-            >
+            <Container w={{ md: '100%', base: 20 }} _hover={{ animation: `${animationPokeball} 1s ease-out infinite` }}>
               <Image src="/assets/pokeball.png" width={46} height={46} alt="pokeball" />
             </Container>
           </Tooltip>
