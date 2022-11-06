@@ -6,7 +6,8 @@ export const myTheme: Theme = {
     global: (props) => ({
       'body, html': {
         background: props.colorMode === 'dark' ? 'gray.900' : 'cyan.100',
-        color: props.colorMode === 'dark' ? 'white' : 'gray.900'
+        color: props.colorMode === 'dark' ? 'white' : 'gray.900',
+        overflowX: 'hidden'
       }
     })
   },
@@ -40,5 +41,10 @@ export const myTheme: Theme = {
   sizes: {
     ...theme.sizes,
     '60': '60px'
+  },
+  breakpoints: {
+    ...theme.breakpoints,
+    sm: '425px',
+    md: '768px'
   }
 }

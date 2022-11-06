@@ -13,8 +13,19 @@ const About = () => {
         </Heading>
         <Flex as="article" justifyContent="center" wrap="wrap">
           <Box as="span" fontSize="lg" textAlign="justify" w="2xl">
-            Pokédex feita a partir da api <Link href="https://pokeapi.co/">PokéAPI</Link> utilizando NextJs e Chakra ui
-            para a estilização, com cerca de 600 pokémons e suas páginas individuais! Espero que gostem! "Vai Pikachu!"
+            Pokédex feita a partir da api{' '}
+            <Link href="https://pokeapi.co/" target="_blank" fontWeight="bold">
+              PokéAPI
+            </Link>{' '}
+            utilizando{' '}
+            <Link target="_blank" fontWeight="bold" href="https://nextjs.org/">
+              NextJs
+            </Link>{' '}
+            e{' '}
+            <Link target="_blank" fontWeight="bold" href="https://chakra-ui.com/">
+              Chakra ui
+            </Link>{' '}
+            para a estilização, com cerca de 100 pokémons e suas páginas individuais! Espero que gostem! "Vai Pikachu!"
           </Box>
           <Image
             src="./assets/pokeball.png"
