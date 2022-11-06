@@ -6,7 +6,7 @@ export const Abilities = ({ pokemon }) => {
     <Center mt="1">
       <Box textAlign="center" as="span" fontSize="xl" fontWeight="medium">
         Abilities
-        {pokemon.abilities.map((item: any, key: React.Key) => (
+        {pokemon.abilities?.map((item: any, key: React.Key) => (
           <Center
             key={key}
             fontWeight="bold"

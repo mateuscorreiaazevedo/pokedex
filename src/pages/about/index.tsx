@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Image, Link, Stack } from '@chakra-ui/react'
+import { Box, Flex, Heading, Highlight, Image, Link, Stack } from '@chakra-ui/react'
 import { animationPokeball } from '../../components/header'
 import { TitleHead } from '../../components/head'
 import React from 'react'
@@ -9,7 +9,7 @@ const About = () => {
       <TitleHead title="About us | Pokedex" />
       <Stack spacing="10" as="section">
         <Heading fontSize="6xl" as="h1">
-          About us
+          Sobre o app
         </Heading>
         <Flex as="article" justifyContent="center" wrap="wrap">
           <Box as="span" fontSize="lg" textAlign="justify" w="2xl">
@@ -23,9 +23,14 @@ const About = () => {
             </Link>{' '}
             e{' '}
             <Link target="_blank" fontWeight="bold" href="https://chakra-ui.com/">
-              Chakra ui
+              ChakraUi
             </Link>{' '}
-            para a estilização, com cerca de 100 pokémons e suas páginas individuais! Espero que gostem! "Vai Pikachu!"
+            para a estilização, com cerca de 100 pokémons e suas páginas individuais! Espero que gostem!{' '}
+            <Box as="h3" fontSize="4xl" fontWeight="bold">
+              <Highlight query={'Pikachu'} styles={{ color: 'yellow.400' }}>
+                "Vai Pikachu!"
+              </Highlight>
+            </Box>
           </Box>
           <Image
             src="./assets/pokeball.png"

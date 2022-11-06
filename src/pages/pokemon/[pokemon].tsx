@@ -9,6 +9,7 @@ import { Types } from '../../components/type'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import React from 'react'
+import axios from 'axios'
 
 const Pokemon = ({ pokemon }) => {
   const bgColorPoke = useColorModeValue('teal.100', 'gray.800')
@@ -19,8 +20,8 @@ const Pokemon = ({ pokemon }) => {
   }
 
   return (
-    <>
-      <TitleHead title={`${pokemon.name} | Pokedex`} />
+    <React.Suspense fallback={<LoadingFallback />}>
+      <TitleHead title={pokemon?.name ? `${pokemon.name} | Pokedex` : 'Carregando...'} />
       <Flex
         position="relative"
         bg={bgColorPoke}
@@ -38,7 +39,7 @@ const Pokemon = ({ pokemon }) => {
             src={`https://cdn.traction.one/pokedex/pokemon/${pokemon.id}.png`}
             width="1000"
             height="1000"
-            alt={pokemon.name}
+            alt={pokemon?.name || 'Pokemon'}
           />
         </Center>
         <Box>
@@ -49,7 +50,7 @@ const Pokemon = ({ pokemon }) => {
           <Abilities pokemon={pokemon} />
         </Box>
       </Flex>
-    </>
+    </React.Suspense>
   )
 }
 
@@ -74,15 +75,11 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const { params } = ctx
   const name = params.pokemon
 
-  try {
-    const data = await PokeService.getByName(name as string)
+  const data = await PokeService.getByName(name as string)
 
-    return {
-      props: { pokemon: data },
-      revalidate: 60
-    }
-  } catch (error) {
-    console.error((error as any).message)
+  return {
+    props: { pokemon: data },
+    revalidate: 60
   }
 }
 

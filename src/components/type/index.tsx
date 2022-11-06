@@ -38,7 +38,7 @@ export const Types = ({ pokemon }) => {
     <Center>
       <Box as="span" fontSize="xl" fontWeight="medium" textAlign="center">
         Types
-        {pokemon.types.map((item: any, key: React.Key) => {
+        {pokemon.types?.map((item: any, key: React.Key) => {
           let bgColor: string = switchBg(item.type.name)
 
           return (
