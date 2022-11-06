@@ -45,6 +45,7 @@ export const myTheme: Theme = {
   breakpoints: {
     ...theme.breakpoints,
     sm: '425px',
-    md: '768px'
+    md: '768px',
+    lg: '900px'
   }
 }

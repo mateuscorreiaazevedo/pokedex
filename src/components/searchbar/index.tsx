@@ -26,7 +26,7 @@ export const SearchBar = () => {
           title: 'Pokémon não encontrado!',
           isClosable: true,
           duration: 2000,
-          position: 'bottom'
+          position: 'top'
         })
       }
     } else if (enter && !search.length) {
@@ -35,17 +35,16 @@ export const SearchBar = () => {
         title: 'Por favor, preencha o campo de pesquisa',
         isClosable: true,
         duration: 2000,
-        position: 'bottom'
+        position: 'top'
       })
     }
   }
 
   return (
     <>
-      <InputGroup width={{ md: '90%', base: '80' }}>
+      <InputGroup width="full">
         <InputLeftElement children={<BsSearch />} />
         <Input
-          mb="5"
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Pesquisar Pokémons"
           bg="whiteAlpha.600"

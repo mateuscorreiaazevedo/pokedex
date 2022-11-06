@@ -13,7 +13,7 @@ export const SwitchTheme: React.FC<Props> = ({ type }) => {
   if (type) {
     return (
       <Tooltip label="Switch theme" bg="teal.100" color="gray.900" hasArrow>
-        <Button color="white" fontSize="xl" bg="blue.700" _hover={{ bg: 'blue.800' }} onClick={toggleColorMode}>
+        <Button color="white" fontSize="xl" bg="transparent" onClick={toggleColorMode}>
           {light ? <BsSun className="icon" /> : <BsMoon className="icon" />}
         </Button>
       </Tooltip>
