@@ -38,7 +38,7 @@ const Home = ({ pokemons }) => {
       </Flex>
       <VStack>
         <Center textAlign="center" fontSize={{ md: 'xl', base: 'md' }} mb="4" fontWeight="medium">
-          Não encontrou o pokémon que queria? Digte o nome do pokémon na barra de pesquisas!
+          Não encontrou o pokémon que queria? Digite o nome do pokémon na barra de pesquisa!
         </Center>
       </VStack>
     </>
