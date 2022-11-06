@@ -37,10 +37,9 @@ const Home = ({ pokemons }) => {
         ))}
       </Flex>
       <VStack>
-        <Center fontSize={{ md: 'xl', base: 'md' }} mb="4" fontWeight="medium">
-          Não encontrou o pokémon que queria? Escreva o seu nome no campo abaixo
+        <Center textAlign="center" fontSize={{ md: 'xl', base: 'md' }} mb="4" fontWeight="medium">
+          Não encontrou o pokémon que queria? Digte o nome do pokémon na barra de pesquisas!
         </Center>
-        <SearchBar />
       </VStack>
     </>
   )

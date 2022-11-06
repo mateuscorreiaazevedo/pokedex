@@ -31,15 +31,7 @@ export const NavLink: React.FC<Props> = ({ link, title }) => {
           }
         `}
       >
-        <Container
-          sx={{
-            '@media (max-width: 425px)': {
-              display: 'none'
-            }
-          }}
-          className="container-img"
-          transform="scale(0)"
-        >
+        <Container display={{ md: 'flex', base: 'none' }} className="container-img" transform="scale(0)">
           <Image src="/assets/pokeball.png" alt="pokeball" width={24} height={24} />
         </Container>
         {title}

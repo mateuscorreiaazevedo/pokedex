@@ -2,8 +2,8 @@ import { Center, Flex, keyframes, Tooltip, Container } from '@chakra-ui/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { SwitchTheme } from '../switch-theme'
-import { NavLink } from './nav-link'
+import { SearchBar } from '../searchbar'
+import { Nav } from './nav'
 
 export const animationPokeball = keyframes`
   5%, 25% {transform: rotate(30deg)}
@@ -29,15 +29,19 @@ export const Header = () => {
       >
         <Link href="/">
           <Tooltip label="To home" bg="blue.700" color="white" borderRadius="md" hasArrow>
-            <Container _hover={{ animation: `${animationPokeball} 1s ease-out infinite` }}>
+            <Container
+              w={{ md: '100%', base: 20 }}
+              h={{ md: '100%', base: 20 }}
+              _hover={{ animation: `${animationPokeball} 1s ease-out infinite` }}
+            >
               <Image src="/assets/pokeball.png" width={46} height={46} alt="pokeball" />
             </Container>
           </Tooltip>
         </Link>
-        <Center as="nav" gap="3">
-          <NavLink link="/about" title="About" />
-          <SwitchTheme />
+        <Center flexGrow="1">
+          <SearchBar />
         </Center>
+        <Nav />
       </Flex>
     </Center>
   )
