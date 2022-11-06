@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
 
-const BASE_URL = process.env.API
+const BASE_URL = process.env.API || 'https://pokeapi.co/api/v2/pokemon'
 
 type HttpReq = {
   url: string

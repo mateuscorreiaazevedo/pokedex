@@ -1,11 +1,11 @@
 import { Center, Flex, Heading, Highlight, VStack } from '@chakra-ui/react'
+import { SearchBar } from '../components/searchbar'
 import { PokeService } from '../services/pokemon'
 import { CardPokemon } from '../components/card'
 import { TitleHead } from '../components/head'
-import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
+import { GetStaticProps } from 'next'
 import React from 'react'
-import { SearchBar } from '../components/searchbar'
 
 const Home = ({ pokemons }) => {
   const router = useRouter()
@@ -37,7 +37,7 @@ const Home = ({ pokemons }) => {
         ))}
       </Flex>
       <VStack>
-        <Center fontSize={{ md: 'xl', base: 'md' }} fontWeight="medium">
+        <Center fontSize={{ md: 'xl', base: 'md' }} mb="4" fontWeight="medium">
           Não encontrou o pokémon que queria? Escreva o seu nome no campo abaixo
         </Center>
         <SearchBar />

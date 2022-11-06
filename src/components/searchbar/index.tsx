@@ -2,26 +2,40 @@ import { Input, InputGroup, InputLeftElement, useColorModeValue, useToast } from
 import { useRouter } from 'next/router'
 import React from 'react'
 import { BsSearch } from 'react-icons/bs'
+import { PokeService } from '../../services/pokemon'
 
 export const SearchBar = () => {
   const colorPlaceholder = useColorModeValue('gray.500', 'white')
   const [search, setSearch] = React.useState('')
   const pokeName = search.toLowerCase()
-  const router = useRouter()
+  const { push } = useRouter()
   const toast = useToast()
 
-  const handlePokemon = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handlePokemon = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     const enter = e.key === 'Enter'
+
     if (enter && search.length) {
-      router.push(`/pokemon/${pokeName}`)
-      setSearch('')
+      try {
+        const { name } = await PokeService.getByName(pokeName)
+        push(`/pokemon/${name}`)
+        setSearch('')
+      } catch (error) {
+        setSearch('')
+        toast({
+          status: 'error',
+          title: 'Pokémon não encontrado!',
+          isClosable: true,
+          duration: 2000,
+          position: 'bottom'
+        })
+      }
     } else if (enter && !search.length) {
       toast({
         status: 'error',
         title: 'Por favor, preencha o campo de pesquisa',
         isClosable: true,
-        duration: 1000,
-        position: 'bottom-left'
+        duration: 2000,
+        position: 'bottom'
       })
     }
   }
