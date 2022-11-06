@@ -1,16 +1,24 @@
 import { Box, Center, Flex, Heading, useColorMode } from '@chakra-ui/react'
-import Image from 'next/image'
-import { GetServerSideProps } from 'next'
-import React from 'react'
 import { Abilities } from '../../components/abilities'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { PokeService } from '../../services/pokemon'
 import { TitleHead } from '../../components/head'
 import { IdCard } from '../../components/id-card'
 import { Types } from '../../components/type'
-import { PokeService } from '../../services/pokemon'
+import { useRouter } from 'next/router'
+import Image from 'next/image'
+import React from 'react'
+import { LoadingFallback } from '../../components/loading-fallback'
 
 const Pokemon = ({ pokemon }) => {
   const { colorMode } = useColorMode()
   const bgColorPoke = colorMode === 'light' ? 'teal.100' : 'gray.800'
+  const router = useRouter()
+
+  if (router.isFallback) {
+    return <LoadingFallback />
+  }
+
   return (
     <>
       <TitleHead title={`${pokemon.name} | Pokedex`} />
@@ -35,16 +43,7 @@ const Pokemon = ({ pokemon }) => {
           />
         </Center>
         <Box>
-          <Heading
-            sx={{
-              '@media (max-width: 425px)': {
-                fontSize: '4xl'
-              }
-            }}
-            fontSize="5xl"
-            textTransform="capitalize"
-            color="red.500"
-          >
+          <Heading fontSize={{ md: '4xl' }} textTransform="capitalize" color="red.500">
             {pokemon.name}
           </Heading>
           <Types pokemon={pokemon} />
@@ -55,9 +54,24 @@ const Pokemon = ({ pokemon }) => {
   )
 }
 
-export default Pokemon
+export const getStaticPaths: GetStaticPaths = async () => {
+  const data = await PokeService.getAll()
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const paths = data.results.map((item: any) => {
+    return {
+      params: {
+        pokemon: item.name
+      }
+    }
+  })
+
+  return {
+    paths,
+    fallback: true
+  }
+}
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
   const { params } = ctx
   const name = params.pokemon
 
@@ -71,6 +85,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
   } catch (error) {
     console.error((error as any).message)
-  } finally {
   }
 }
+
+export default Pokemon

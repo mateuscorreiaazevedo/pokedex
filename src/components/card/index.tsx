@@ -1,4 +1,4 @@
-import { Center, Heading, Stack, useColorMode } from '@chakra-ui/react'
+import { Center, Heading, Skeleton, Spinner, Stack, useColorMode } from '@chakra-ui/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -8,6 +8,7 @@ export const CardPokemon = (props: any) => {
   const { name, id } = props
   const { colorMode } = useColorMode()
   const bgColorPoke = colorMode === 'light' ? 'teal.100' : 'gray.800'
+
   return (
     <Link href={`/pokemon/${name}`}>
       <Stack
@@ -29,7 +30,13 @@ export const CardPokemon = (props: any) => {
         <IdCard id={id} rest={{ minW: 8 }} />
 
         <Center>
-          <Image width="144" height="144" src={`https://cdn.traction.one/pokedex/pokemon/${id}.png`} alt={name} />
+          <Image
+            loading="lazy"
+            width="144"
+            height="144"
+            src={`https://cdn.traction.one/pokedex/pokemon/${id}.png`}
+            alt={name}
+          />
         </Center>
         <Heading mb="2" textTransform="capitalize" fontSize="2xl" color="red.500" w="full" textAlign="center">
           {name}
