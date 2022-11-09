@@ -13,7 +13,7 @@ const Home = ({ pokemons }) => {
 
   return (
     <>
-      <TitleHead title="Home | Pokedex" />
+      <TitleHead title="Home | Pokédex" />
       <TitleHome />
       <Flex py="10" justify="space-around" wrap="wrap">
         {pokemons?.map((pokemon: any, key: React.Key) => (
