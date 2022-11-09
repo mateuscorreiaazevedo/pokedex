@@ -9,7 +9,6 @@ import { Types } from '../../components/type'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import React from 'react'
-import axios from 'axios'
 
 const Pokemon = ({ pokemon }) => {
   const bgColorPoke = useColorModeValue('teal.100', 'gray.800')
@@ -21,7 +20,7 @@ const Pokemon = ({ pokemon }) => {
 
   return (
     <React.Suspense fallback={<LoadingFallback />}>
-      <TitleHead title={pokemon?.name ? `${pokemon.name} | Pokedex` : 'Carregando...'} />
+      <TitleHead title={pokemon?.name ? `${pokemon.name} | Pokédex` : 'Carregando...'} />
       <Flex
         position="relative"
         bg={bgColorPoke}
@@ -42,12 +41,18 @@ const Pokemon = ({ pokemon }) => {
             alt={pokemon?.name || 'Pokemon'}
           />
         </Center>
-        <Box>
-          <Heading fontSize={{ md: '4xl' }} textTransform="capitalize" color="red.500">
+        <Box textAlign="center">
+          <Heading fontSize={{ md: '4xl', base: '2xl' }} textTransform="capitalize" color="red.500">
             {pokemon.name}
           </Heading>
           <Types pokemon={pokemon} />
           <Abilities pokemon={pokemon} />
+          <Box fontSize={{ md: 'xl' }} fontWeight="medium" textAlign="center">
+            Height
+            <Center bg="blue.700" color="white" borderRadius="md" m="1" px="2" p="1" w="28" mx="auto">
+              {pokemon.height}'
+            </Center>
+          </Box>
         </Box>
       </Flex>
     </React.Suspense>

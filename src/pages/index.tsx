@@ -1,7 +1,8 @@
-import { Center, Flex, Heading, Highlight, VStack } from '@chakra-ui/react'
-import { SearchBar } from '../components/searchbar'
+import { MotionBox } from '../components/card/animation'
+import { TitleHome } from '../components/title-home'
 import { PokeService } from '../services/pokemon'
 import { CardPokemon } from '../components/card'
+import { Center, Flex } from '@chakra-ui/react'
 import { TitleHead } from '../components/head'
 import { useRouter } from 'next/router'
 import { GetStaticProps } from 'next'
@@ -13,34 +14,26 @@ const Home = ({ pokemons }) => {
   return (
     <>
       <TitleHead title="Home | Pokedex" />
-      <Center mt="4">
-        <Heading as="h1" cursor="pointer" fontSize="5xl" color="blue.700">
-          <Highlight
-            query="dex"
-            styles={{
-              color: 'red.500',
-              background: 'white',
-              borderRadius: 'md',
-              pr: '4'
-            }}
-          >
-            Pokedex
-          </Highlight>
-        </Heading>
-      </Center>
-      <Center mt="4" as="p" color="orange.500" fontWeight="medium">
-        Clique no card para mais detalhes*
-      </Center>
-      <Flex my="14" justify="center" wrap="wrap" gap="10" maxW="1200px">
+      <TitleHome />
+      <Flex py="10" justify="space-around" wrap="wrap">
         {pokemons?.map((pokemon: any, key: React.Key) => (
-          <CardPokemon key={key} {...pokemon} />
+          <MotionBox
+            overflow="hidden"
+            position="relative"
+            py={14}
+            px={8}
+            key={key}
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ amount: 0.5, once: true }}
+          >
+            <CardPokemon {...pokemon} />
+          </MotionBox>
         ))}
       </Flex>
-      <VStack>
-        <Center textAlign="center" fontSize={{ md: 'xl', base: 'md' }} mb="4" fontWeight="medium">
-          Não encontrou o pokémon que queria? Digite o nome do pokémon na barra de pesquisa!
-        </Center>
-      </VStack>
+      <Center textAlign="center" fontSize={{ md: 'xl', base: 'md' }} mb="4" fontWeight="medium">
+        Não encontrou o pokémon que queria? Digite o nome do pokémon na barra de pesquisa!
+      </Center>
     </>
   )
 }
