@@ -6,7 +6,7 @@ import React from 'react'
 const About = () => {
   return (
     <>
-      <TitleHead title="About us | Pokedex" />
+      <TitleHead title="About us | Pokédex" />
       <Stack spacing="10" as="section">
         <Heading fontSize="6xl" as="h1">
           Sobre o app

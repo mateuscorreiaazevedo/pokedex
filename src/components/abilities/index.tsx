@@ -4,7 +4,7 @@ import React from 'react'
 export const Abilities = ({ pokemon }) => {
   return (
     <Center mt="1">
-      <Box textAlign="center" as="span" fontSize="xl" fontWeight="medium">
+      <Box textAlign="center" as="span" fontSize={{ md: 'xl' }} fontWeight="medium">
         Abilities
         {pokemon.abilities?.map((item: any, key: React.Key) => (
           <Center

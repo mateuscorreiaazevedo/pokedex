@@ -29,6 +29,10 @@ export const Types = ({ pokemon }) => {
         return (color = 'gray.700')
       case 'fighting':
         return (color = 'gold')
+      case 'bug':
+        return (color = 'green.700')
+      case 'flying':
+        return (color = 'teal.600')
       default:
         return (color = 'blue.700')
     }
@@ -36,7 +40,7 @@ export const Types = ({ pokemon }) => {
 
   return (
     <Center>
-      <Box as="span" fontSize="xl" fontWeight="medium" textAlign="center">
+      <Box as="span" fontSize={{ md: 'xl' }} fontWeight="medium" textAlign="center">
         Types
         {pokemon.types?.map((item: any, key: React.Key) => {
           let bgColor: string = switchBg(item.type.name)
