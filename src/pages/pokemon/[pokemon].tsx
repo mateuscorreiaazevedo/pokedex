@@ -9,6 +9,7 @@ import { Types } from '../../components/type'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import React from 'react'
+import { Stats } from '../../components/stats'
 
 const Pokemon = ({ pokemon }) => {
   const bgColorPoke = useColorModeValue('teal.100', 'gray.800')
@@ -50,9 +51,10 @@ const Pokemon = ({ pokemon }) => {
           <Box fontSize={{ md: 'xl' }} fontWeight="medium" textAlign="center">
             Height
             <Center bg="blue.700" color="white" borderRadius="md" m="1" px="2" p="1" w="28" mx="auto">
-              {pokemon.height}'
+              {pokemon.height}
             </Center>
           </Box>
+          <Stats pokemon={pokemon} />
         </Box>
       </Flex>
     </React.Suspense>
