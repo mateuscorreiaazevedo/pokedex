@@ -7,7 +7,7 @@ class MyDocument extends Document {
         <Head>
           <meta charSet="utf-8" />
           <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-          <link href="./favicon.ico" />
+          <link rel="icon" href="./favicon.ico" />
         </Head>
         <body>
           <Main />
