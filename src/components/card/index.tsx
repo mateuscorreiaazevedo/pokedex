@@ -2,6 +2,7 @@ import { Center, Heading, Skeleton, Spinner, Stack, useColorMode } from '@chakra
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import { maskIdImage } from '../../utils/mask-id'
 import { IdCard } from '../id-card'
 import { animateCard, MotionBox } from './animation'
 
@@ -36,7 +37,7 @@ export const CardPokemon = (props: any) => {
               loading="lazy"
               width="144"
               height="144"
-              src={`https://cdn.traction.one/pokedex/pokemon/${id}.png`}
+              src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${maskIdImage(id)}.png`}
               alt={name}
             />
           </Center>
