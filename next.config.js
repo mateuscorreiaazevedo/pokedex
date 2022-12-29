@@ -8,6 +8,12 @@ const nextConfig = {
         hostname: 'cdn.traction.one',
         port: '',
         pathname: '/pokedex/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.pokemon.com',
+        port: '',
+        pathname: '/assets/**'
       }
     ]
   }
