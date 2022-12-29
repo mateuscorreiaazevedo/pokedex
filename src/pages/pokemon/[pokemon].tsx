@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import React from 'react'
 import { Stats } from '../../components/stats'
+import { maskIdImage } from '../../utils/mask-id'
 
 const Pokemon = ({ pokemon }) => {
   const bgColorPoke = useColorModeValue('teal.100', 'gray.800')
@@ -36,7 +37,7 @@ const Pokemon = ({ pokemon }) => {
         <IdCard id={pokemon.id} rest={{ minW: 10, fontSize: '2xl' }} />
         <Center w="xl" minW="40%">
           <Image
-            src={`https://cdn.traction.one/pokedex/pokemon/${pokemon.id}.png`}
+            src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${maskIdImage(pokemon.id)}.png`}
             width="1000"
             height="1000"
             alt={pokemon?.name || 'Pokemon'}
