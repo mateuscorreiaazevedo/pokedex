@@ -63,7 +63,7 @@ const Pokemon = ({ pokemon }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await PokeService.getAll()
+  const data = await PokeService.getAll({})
 
   const paths = data.results.map((item: any) => {
     return {

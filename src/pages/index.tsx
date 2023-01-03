@@ -1,15 +1,42 @@
+import { Button, Center, Flex, Spinner, useToast } from '@chakra-ui/react'
 import { MotionBox } from '../components/card/animation'
 import { TitleHome } from '../components/title-home'
 import { PokeService } from '../services/pokemon'
 import { CardPokemon } from '../components/card'
-import { Center, Flex } from '@chakra-ui/react'
 import { TitleHead } from '../components/head'
-import { useRouter } from 'next/router'
 import { GetStaticProps } from 'next'
 import React from 'react'
 
-const Home = ({ pokemons }) => {
-  const router = useRouter()
+const Home = ({ pokemons: data }) => {
+  const [pokemons, setPokemons] = React.useState(data)
+  const [loading, setLoading] = React.useState(false)
+  const [showBtn, setShowBtn] = React.useState(true)
+  const [offset, setOffset] = React.useState(100)
+  const toast = useToast()
+
+  const handleChangePage = async () => {
+    setOffset(offset + 100)
+    setLoading(true)
+    try {
+      const response = await PokeService.getAll({ offset })
+      if(!response.results) {
+        setShowBtn(false)
+      }
+      response.results.forEach((item: any, index: number) => {
+        item.id = index + (offset + 1)
+      })
+      setPokemons([...pokemons, ...response.results])
+    } catch (error) {
+      toast({
+        title: (error as any).message,
+        status: 'error',
+        isClosable: true
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
+
 
   return (
     <>
@@ -31,15 +58,19 @@ const Home = ({ pokemons }) => {
           </MotionBox>
         ))}
       </Flex>
-      <Center textAlign="center" fontSize={{ md: 'xl', base: 'md' }} mb="4" fontWeight="medium">
-        Não encontrou o pokémon que queria? Digite o nome do pokémon na barra de pesquisa!
+      <Center pb={8}>
+      {showBtn && (
+        <Button colorScheme='blue' onClick={handleChangePage} isDisabled={loading}>
+          {loading ? <><Spinner/></>: <>Carregar mais...</>}
+        </Button>
+      )}
       </Center>
     </>
   )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await PokeService.getAll()
+  const data = await PokeService.getAll({})
 
   data.results.forEach((item: any, index: number) => {
     item.id = index + 1
