@@ -1,5 +1,6 @@
-import { Button, Center, Flex, Spinner, useToast } from '@chakra-ui/react'
+import { Center, Flex, Spinner, useToast } from '@chakra-ui/react'
 import { MotionBox } from '../components/card/animation'
+import { useInView } from 'react-intersection-observer'
 import { TitleHome } from '../components/title-home'
 import { PokeService } from '../services/pokemon'
 import { CardPokemon } from '../components/card'
@@ -7,28 +8,25 @@ import { TitleHead } from '../components/head'
 import { GetStaticProps } from 'next'
 import React from 'react'
 
-const Home = ({ pokemons: data }) => {
+const Home = ({ pokemons:data }) => {
   const [pokemons, setPokemons] = React.useState(data)
   const [loading, setLoading] = React.useState(false)
-  const [showBtn, setShowBtn] = React.useState(true)
   const [offset, setOffset] = React.useState(100)
+  const {ref, inView} = useInView({ threshold: 0 })
   const toast = useToast()
 
-  const handleChangePage = async () => {
-    setOffset(offset + 100)
+  const handleChangeOffset = async () => {
     setLoading(true)
     try {
-      const response = await PokeService.getAll({ offset })
-      if(!response.results) {
-        setShowBtn(false)
-      }
-      response.results.forEach((item: any, index: number) => {
-        item.id = index + (offset + 1)
+      const response = await PokeService.getAll({offset})
+      setOffset(offset + 100)
+      response.results.forEach((item: any, i: number)=> {
+        item.id = (i + 1) + offset
       })
       setPokemons([...pokemons, ...response.results])
     } catch (error) {
       toast({
-        title: (error as any).message,
+        title: error.message,
         status: 'error',
         isClosable: true
       })
@@ -37,6 +35,11 @@ const Home = ({ pokemons: data }) => {
     }
   }
 
+  React.useEffect(() => {
+    if(inView) {
+      handleChangeOffset()
+    }
+  }, [loading, inView])
 
   return (
     <>
@@ -58,13 +61,12 @@ const Home = ({ pokemons: data }) => {
           </MotionBox>
         ))}
       </Flex>
-      <Center pb={8}>
-      {showBtn && (
-        <Button colorScheme='blue' onClick={handleChangePage} isDisabled={loading}>
-          {loading ? <><Spinner/></>: <>Carregar mais...</>}
-        </Button>
+      {loading && (
+        <Center>
+          <Spinner />
+        </Center>
       )}
-      </Center>
+      <div ref={ref} />
     </>
   )
 }
