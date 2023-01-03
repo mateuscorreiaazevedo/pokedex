@@ -7,6 +7,7 @@ type HttpReq = {
   method?: 'get' | 'post' | 'put' | 'delete'
   body?: any
   headers?: any
+  params?: any
 }
 
 type HttpRes<T = any> = {
@@ -30,7 +31,8 @@ class ApiService {
         url: props.url,
         method: props.method || 'get',
         data: props.body || {},
-        headers: props.headers || {}
+        headers: props.headers || {},
+        params: props.params
       })
       axiosResponse = response
     } catch (error) {

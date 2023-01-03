@@ -1,10 +1,9 @@
 import { apiService } from './api'
 
 export namespace PokeService {
-  export async function getAll(limit: number = 100) {
+  export async function getAll({ offset = 0, limit = 100 }) {
     const response = await apiService.request({
-      url: `/?offset=0&limit=${limit}`,
-      method: 'get'
+      url: `/?offset=${offset}&limit=${limit}`,
     })
 
     switch (response.statusCode) {

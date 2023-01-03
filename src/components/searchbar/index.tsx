@@ -49,7 +49,7 @@ export const SearchBar = () => {
           placeholder="Pesquisar Pokémons"
           bg="whiteAlpha.600"
           border="none"
-          onKeyDown={(e) => handlePokemon(e)}
+          onKeyDown={handlePokemon}
           value={search}
           _placeholder={{ color: colorPlaceholder }}
         />
